@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おんさんそうさんN4日本語20260823</title>
+<style>
+    :root {
+        --bg-purple: linear-gradient(135deg, #E0BBE4, #F2E3F7);
+        --bg-pink: linear-gradient(135deg, #FFD1DC, #FFF0F5);
+        --bg-mint: linear-gradient(135deg, #B5EAD7, #E0F5EC);
+        --bg-yellow: linear-gradient(135deg, #FFFFB5, #FFFFE0);
+        --bg-blue: linear-gradient(135deg, #C7CEEA, #E8EAF6);
+        --text-main: #5C4B51;
+        --accent: #957DAD;
+        --box-bg: rgba(255, 255, 255, 0.95);
+        --correct: #B5EAD7;
+        --wrong: #FFD1DC;
+    }
+    
+    /* 隱藏原生滾動條，呈現順暢的網頁感 */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Hiragino Maru Gothic ProN', 'Rounded M+ 1c', 'Quicksand', sans-serif;
+        color: var(--text-main);
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .page {
+        height: 100vh;
+        width: 100vw;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    .card {
+        background: var(--box-bg);
+        padding: 35px 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(149, 125, 173, 0.15);
+        max-width: 800px;
+        width: 100%;
+        text-align: left;
+        backdrop-filter: blur(8px);
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .text-center { text-align: center; }
+    h1 { color: var(--accent); font-size: 2.2rem; margin-bottom: 10px; text-align: center; letter-spacing: 2px;}
+    h2 { color: var(--accent); font-size: 1.6rem; border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-top: 5px; margin-bottom: 20px; display: inline-block;}
+    h3 { color: #5C4B51; font-size: 1.2rem; margin-top: 15px; margin-bottom: 8px; border-left: 4px solid var(--accent); padding-left: 10px;}
+    p { font-size: 1.1rem; line-height: 1.7; margin: 10px 0;}
+    
+    .q-container { background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eee;}
+    .question { font-size: 1.25rem; font-weight: bold; margin-bottom: 15px; color: #333;}
+    
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .opt-btn { background: #F5F6FA; border: 2px solid transparent; padding: 12px; font-size: 1rem; border-radius: 10px; cursor: pointer; transition: 0.3s; color: var(--text-main); font-weight: bold; text-align: center;}
+    .opt-btn:hover { background: #E8EAF6; transform: translateY(-2px);}
+    
+    .action-btn { background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1.1rem; cursor: pointer; margin-top: 10px; transition: 0.3s; font-weight: bold;}
+    .action-btn:hover { background: #7C6692; }
+    
+    .hint-btn { background: #FFF0F5; color: var(--accent); border: 1px solid var(--accent); padding: 8px 16px; border-radius: 6px; font-size: 0.95rem; cursor: pointer; margin-bottom: 10px; font-weight: bold;}
+    
+    .answer-box { background: #F3E5F5; padding: 18px; border-radius: 12px; margin-top: 15px; text-align: left; display: none; border-left: 5px solid var(--accent);}
+    .hint-box { background: #FFFFF0; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #F4D03F; display: none; font-size: 1rem;}
+    
+    .grammar-box { background: #fff; padding: 25px; border-radius: 15px; border: 1px solid #E0BBE4; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.02);}
+    .example-block { background: #FAFAFA; padding: 15px; border-radius: 8px; margin-top: 10px;}
+    
+    .nav-hint { font-size: 0.95rem; color: #999; margin-top: 25px; animation: slideDown 2s infinite; text-align: center; font-weight: bold;}
+    
+    .fade-in { animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    
+    @keyframes slideDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .p-purple { background: var(--bg-purple); }
+    .p-pink { background: var(--bg-pink); }
+    .p-mint { background: var(--bg-mint); }
+    .p-yellow { background: var(--bg-yellow); }
+    .p-blue { background: var(--bg-blue); }
+</style>
+</head>
+<body>
+
+<!-- Page 1: Title -->
+<div class="page p-purple">
+    <div class="card text-center">
+        <h1>おんさんそうさんN4日本語</h1>
+        <p style="color: #888; margin-top: -10px;">2026.08.16</p>
+        <h2 style="border: none; margin-top: 20px;">文法と翻訳の徹底特訓</h2>
+        <div style="background: rgba(255,255,255,0.6); padding: 20px; border-radius: 15px; margin-top: 20px; text-align: left;">
+            <p><strong>【第一部】</strong> 旧文法復習（4題）</p>
+            <p><strong>【第二部】</strong> 新文法：間に・うちに・最中に</p>
+            <p><strong>【第三部】</strong> 翻訳大特訓（日翻中・填充・中翻日）</p>
+            <p><strong>【第四部】</strong> 結業小考（5題）</p>
+        </div>
+        <div class="nav-hint">▼ 下へスクロールしてスタート ▼</div>
+    </div>
+</div>
+
+<!-- Page 2: Review Q1 & Q2 -->
+<div class="page p-blue">
+    <div class="card">
+        <h2>【復習】Q1 & Q2</h2>
+        
+        <div class="q-container">
+            <div class="question">Q1. そうさん：「今月のお小遣いが、あと1000円（  ）。」</div>
+            <p>（這個月的零用錢只剩下1000日圓了...）</p>
+            <div class="options" id="opt-q1">
+                <button class="opt-btn" onclick="checkAnswer('opt-q1', this, true, 'ans-q1')">A. しかありません</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q1', this, false, 'ans-q1')">B. しかあります</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q1', this, false, 'ans-q1')">C. ではありません</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q1', this, false, 'ans-q1')">D. しかないありません</button>
+            </div>
+            <div id="ans-q1" class="answer-box fade-in">
+                <p><strong>正解：A. しかありません</strong></p>
+                <p>解説：「しか」必須搭配否定形，表達數量「不夠、太少」的主觀遺憾。</p>
+            </div>
+        </div>
+
+        <div class="q-container">
+            <div class="question">Q2. おんさん：「日本のコンビニは便利（  ）、品揃えもいい（  ）、とても助かります。」</div>
+            <p>（日本便利商店又方便、商品種類又齊全，真的幫了大忙。）</p>
+            <div class="options" id="opt-q2">
+                <button class="opt-btn" onclick="checkAnswer('opt-q2', this, false, 'ans-q2')">A. し / し</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q2', this, true, 'ans-q2')">B. だし / し</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q2', this, false, 'ans-q2')">C. なし / だし</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q2', this, false, 'ans-q2')">D. で / で</button>
+            </div>
+            <div id="ans-q2" class="answer-box fade-in">
+                <p><strong>正解：B. だし / し</strong></p>
+                <p>解説：「便利」是な形容詞，結尾加だ變成普通形（便利だし）；「いい」はい形容詞，直接加し（いいし）。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 3: Review Q3 & Q4 -->
+<div class="page p-pink">
+    <div class="card">
+        <h2>【復習】Q3 & Q4</h2>
+        
+        <div class="q-container">
+            <div class="question">Q3. Nick：「あれ？家族は４人なのに、傘が３本（  ）。」</div>
+            <p>（咦？家裡有四個人，傘卻只有三把。）</p>
+            <div class="options" id="opt-q3">
+                <button class="opt-btn" onclick="checkAnswer('opt-q3', this, false, 'ans-q3')">A. よりありません</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q3', this, false, 'ans-q3')">B. しかあります</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q3', this, true, 'ans-q3')">C. しかありません</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q3', this, false, 'ans-q3')">D. だけありません</button>
+            </div>
+            <div id="ans-q3" class="answer-box fade-in">
+                <p><strong>正解：C. しかありません</strong></p>
+                <p>解説：四個人分三把傘，表示數量不足的客觀事實與些許無奈，使用「しか＋否定形」。</p>
+            </div>
+        </div>
+
+        <div class="q-container">
+            <div class="question">Q4. Neo：「秋葉原はアニメグッズがある（  ）、電化製品もある（  ）、絶対に行きたい！」</div>
+            <p>（秋葉原既有動漫周邊又有電器產品，我絕對要去！）</p>
+            <div class="options" id="opt-q4">
+                <button class="opt-btn" onclick="checkAnswer('opt-q4', this, true, 'ans-q4')">A. し / し</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q4', this, false, 'ans-q4')">B. だし / だし</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q4', this, false, 'ans-q4')">C. て / て</button>
+                <button class="opt-btn" onclick="checkAnswer('opt-q4', this, false, 'ans-q4')">D. なし / なし</button>
+            </div>
+            <div id="ans-q4" class="answer-box fade-in">
+                <p><strong>正解：A. し / し</strong></p>
+                <p>解説：「ある」是動詞普通形，直接接續「し」來列舉多個前往秋葉原的理由。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 4: Grammar Intro -->
+<div class="page p-mint">
+    <div class="card text-center">
+        <h2>【新文法】時間区間を表す表現</h2>
+        <p style="margin-top: 15px;">這三個文法都跟「某段時間內發生的事」有關，但語氣與強調的重點完全不同：</p>
+        <div class="q-container" style="text-align: left; margin-top: 20px;">
+            <p><strong>🔹 〜間に：</strong> 單純表示「在這段期間內」完成了某事。</p>
+            <p><strong>🔹 〜うちに：</strong> 強調「趁著狀態改變之前」把握時機趕快做。</p>
+            <p><strong>🔹 〜最中に：</strong> 強調動作進行到最專心時「被打斷」或發生意外。</p>
+        </div>
+        <div class="nav-hint">▼ 次のページから詳しい解説が始まります ▼</div>
+    </div>
+</div>
+
+<!-- Page 5: Teaching 間に -->
+<div class="page p-yellow">
+    <div class="card">
+        <h2>① 〜間に（在這段期間內...）</h2>
+        <div class="grammar-box">
+            <h3>接続（接續方式）</h3>
+            <p>・動詞（辞書形 / ている形）＋ 間に<br>
+               ・い形容詞（〜い）＋ 間に<br>
+               ・な形容詞（〜な）＋ 間に<br>
+               ・名詞 ＋ の ＋ 間に</p>
+            <h3>使用情境</h3>
+            <p>描述在某個狀態持續的一段時間範圍內，發生了另一個動作或事件。通常後項動作是短暫的或在期間內完成的。</p>
+            <div class="example-block">
+                <p><strong>例句 1：</strong><br>そうさんが運転している<strong>間に</strong>、Nickは車の後ろで寝ていました。<br>（爸爸開車的期間，Nick在車子後座睡著了。）</p>
+                <hr style="border-top:1px dashed #ccc; margin:10px 0;">
+                <p><strong>例句 2：</strong><br>ホテルにいる<strong>間に</strong>、明日のスケジュールを確認しましょう。<br>（在飯店的期間，我們來確認一下明天的行程吧。）</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 6: 間に Practice 1 -->
+<div class="page p-blue">
+    <div class="card">
+        <h2>① 〜間に：日翻中練習</h2>
+        <p>請試著翻譯以下日文句子：</p>
+        
+        <div class="q-container">
+            <div class="question">Neoが買い物をしている間に、そうさんはコーヒーを飲みました。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p6')">顯示解答</button>
+            <div id="ans-p6" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">Neo買東西的時候，爸爸喝了咖啡。</p>
+                <p style="font-size: 0.95rem;">解說：單純指出在「買東西」這段時間範圍內，發生了「喝咖啡」這個動作。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 7: 間に Practice 2 -->
+<div class="page p-pink">
+    <div class="card">
+        <h2>① 〜間に：填充翻譯練習</h2>
+        <p>請根據中文，填入正確的日文文法：</p>
+        
+        <div class="q-container">
+            <div class="question">媽媽在便利商店選飯糰的時候，爸爸去拿了飲料。</div>
+            <p>おんさんがおにぎりを選んでいる（    ）、そうさんは飲み物を取りに行きました。</p>
+            
+            <button class="hint-btn" onclick="toggleReveal('hint-p7')">點擊查看提示</button>
+            <div id="hint-p7" class="hint-box fade-in">
+                提示：選飯糰是一段持續的動作，使用「選ぶ（えらぶ）」的ている形。
+            </div>
+            
+            <button class="action-btn" style="display:block;" onclick="toggleReveal('ans-p7')">顯示解答</button>
+            <div id="ans-p7" class="answer-box fade-in">
+                <p>おんさんがおにぎりを選んでいる<span style="color:var(--accent); font-weight:bold;">【間に】</span>、そうさんは飲み物を取りに行きました。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 8: 間に Practice 3 -->
+<div class="page p-purple">
+    <div class="card">
+        <h2>① 〜間に：中翻日練習</h2>
+        <p>請將以下中文翻譯成日文：</p>
+        
+        <div class="q-container">
+            <div class="question">在日本的期間，想去很多地方。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p8')">顯示解答</button>
+            <div id="ans-p8" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">日本にいる間に、いろいろな所へ行きたいです。</p>
+                <p style="font-size: 0.95rem;">解說：「在日本」是一個持續的狀態，接續動詞ている形。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 9: Teaching うちに -->
+<div class="page p-mint">
+    <div class="card">
+        <h2>② 〜うちに（趁著...的時候）</h2>
+        <div class="grammar-box">
+            <h3>接続（接續方式）</h3>
+            <p>・動詞（辞書形 / ている形 / ない形）＋ うちに<br>
+               ・い形容詞（〜い）＋ うちに<br>
+               ・な形容詞（〜な）＋ うちに<br>
+               ・名詞 ＋ の ＋ うちに</p>
+            <h3>使用情境</h3>
+            <p>強調「趁著狀態改變之前」趕快做某件事。帶有一種如果錯過現在這個狀態，之後就很難做到的時機感。</p>
+            <div class="example-block">
+                <p><strong>例句 1：</strong><br>ファミチキが温かい<strong>うちに</strong>、早く食べましょう。<br>（趁著炸雞還熱的時候，趕快吃吧。）</p>
+                <hr style="border-top:1px dashed #ccc; margin:10px 0;">
+                <p><strong>例句 2：</strong><br>雨が降らない<strong>うちに</strong>、ホテルへ帰りましょう。<br>（趁著還沒下雨，我們回飯店吧。）</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 10: うちに Practice 1 -->
+<div class="page p-yellow">
+    <div class="card">
+        <h2>② 〜うちに：日翻中練習</h2>
+        <p>請試著翻譯以下日文句子：</p>
+        
+        <div class="q-container">
+            <div class="question">日本にいるうちに、お土産を買いましょう。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p10')">顯示解答</button>
+            <div id="ans-p10" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">趁著還在日本的時候，來買伴手禮吧。</p>
+                <p style="font-size: 0.95rem;">解說：強調把握回國前（狀態改變前）的時機。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 11: うちに Practice 2 -->
+<div class="page p-blue">
+    <div class="card">
+        <h2>② 〜うちに：填充翻譯練習</h2>
+        <p>請根據中文，填入正確的日文文法：</p>
+        
+        <div class="q-container">
+            <div class="question">趁著天氣還很好的時候，出發吧。</div>
+            <p>天気がいい（    ）、出発しましょう。</p>
+            
+            <button class="hint-btn" onclick="toggleReveal('hint-p11')">點擊查看提示</button>
+            <div id="hint-p11" class="hint-box fade-in">
+                提示：天氣好是會改變的狀態，必須把握現在。
+            </div>
+            
+            <button class="action-btn" style="display:block;" onclick="toggleReveal('ans-p11')">顯示解答</button>
+            <div id="ans-p11" class="answer-box fade-in">
+                <p>天気がいい<span style="color:var(--accent); font-weight:bold;">【うちに】</span>、出発しましょう。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 12: うちに Practice 3 -->
+<div class="page p-pink">
+    <div class="card">
+        <h2>② 〜うちに：中翻日練習</h2>
+        <p>請將以下中文翻譯成日文：</p>
+        
+        <div class="q-container">
+            <div class="question">趁著還沒忘記，把行程寫下來。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p12')">顯示解答</button>
+            <div id="ans-p12" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">忘れないうちに、スケジュールをメモします。</p>
+                <p style="font-size: 0.95rem;">解說：接續動詞ない形，表示在「忘記」這個狀態發生之前執行動作。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 13: Teaching 最中に -->
+<div class="page p-purple">
+    <div class="card">
+        <h2>③ 〜最中に（正當...的時候）</h2>
+        <div class="grammar-box">
+            <h3>接続（接續方式）</h3>
+            <p>・動詞（ている形）＋ 最中に<br>
+               ・名詞 ＋ の ＋ 最中に</p>
+            <h3>使用情境</h3>
+            <p>強調動作進行到最專心、最投入的一半時，突然發生了「妨礙」或「打斷」該動作的意外事件。</p>
+            <div class="example-block">
+                <p><strong>例句 1：</strong><br>レジでお金を払っている<strong>最中に</strong>、Nickは財布を落としてしまいました。<br>（正當在收銀台付錢付到一半時，Nick把錢包掉在地上了。）</p>
+                <hr style="border-top:1px dashed #ccc; margin:10px 0;">
+                <p><strong>例句 2：</strong><br>家族で写真を撮っている<strong>最中に</strong>、カメラの電池が切れました。<br>（正當全家拍照拍到一半時，相機沒電了。）</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 14: 最中に Practice 1 -->
+<div class="page p-mint">
+    <div class="card">
+        <h2>③ 〜最中に：日翻中練習</h2>
+        <p>請試著翻譯以下日文句子：</p>
+        
+        <div class="q-container">
+            <div class="question">家族で相談している最中に、電車が来ました。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p14')">顯示解答</button>
+            <div id="ans-p14" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">家族討論到一半的時候，電車來了。</p>
+                <p style="font-size: 0.95rem;">解說：電車的到來中斷了正在專心進行的討論。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 15: 最中に Practice 2 -->
+<div class="page p-yellow">
+    <div class="card">
+        <h2>③ 〜最中に：填充翻譯練習</h2>
+        <p>請根據中文，填入正確的日文文法：</p>
+        
+        <div class="q-container">
+            <div class="question">哥哥玩手機玩到一半時，突然停電了。</div>
+            <p>Neoがスマートフォンを操作している（    ）、突然停電しました。</p>
+            
+            <button class="hint-btn" onclick="toggleReveal('hint-p15')">點擊查看提示</button>
+            <div id="hint-p15" class="hint-box fade-in">
+                提示：強調正在專注進行的操作被「停電」這個意外打斷。
+            </div>
+            
+            <button class="action-btn" style="display:block;" onclick="toggleReveal('ans-p15')">顯示解答</button>
+            <div id="ans-p15" class="answer-box fade-in">
+                <p>Neoがスマートフォンを操作している<span style="color:var(--accent); font-weight:bold;">【最中に】</span>、突然停電しました。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 16: 最中に Practice 3 -->
+<div class="page p-blue">
+    <div class="card">
+        <h2>③ 〜最中に：中翻日練習</h2>
+        <p>請將以下中文翻譯成日文：</p>
+        
+        <div class="q-container">
+            <div class="question">看地圖看到一半時，突然下起雨來了。</div>
+            <button class="action-btn" onclick="toggleReveal('ans-p16')">顯示解答</button>
+            <div id="ans-p16" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem;">地図を見ている最中に、突然雨が降ってきました。</p>
+                <p style="font-size: 0.95rem;">解說：正在看地圖的動作被突如其來的雨給打斷了。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 17: Paragraph Practice -->
+<div class="page p-pink">
+    <div class="card">
+        <h2>【自由段落翻譯】</h2>
+        <p>請挑戰將以下連續情境翻譯成日文，並綜合運用今天學到的文法！</p>
+        
+        <div class="q-container">
+            <div class="question" style="line-height: 1.6;">
+                「正當在車站看地圖看到一半時，爸爸的手機響了。<br>
+                在爸爸講電話的期間，Nick去買了車票。」
+            </div>
+            <button class="hint-btn" onclick="toggleReveal('hint-p17')">點擊查看單字提示</button>
+            <div id="hint-p17" class="hint-box fade-in">
+                手機響了：携帯電話が鳴る（鳴りました）<br>
+                買車票：切符を買う（買いました）
+            </div>
+            <button class="action-btn" style="display:block;" onclick="toggleReveal('ans-p17')">顯示解答</button>
+            <div id="ans-p17" class="answer-box fade-in">
+                <p style="color: var(--accent); font-weight: bold; font-size: 1.15rem; line-height: 1.8;">
+                    駅で地図を見ている最中に、そうさんの携帯電話が鳴りました。<br>
+                    そうさんが電話をしている間に、Nickは切符を買いました。
+                </p>
+                <hr style="border-top:1px dashed #ccc; margin:10px 0;">
+                <p style="font-size: 0.95rem;">解說：前半段看地圖被手機鈴聲打斷，使用「最中に」。後半段講電話是一段時間，Nick在這段時間內完成買票，使用「間に」。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 18: Final 1 -->
+<div class="page p-purple">
+    <div class="card">
+        <h2>【結業小考】Q1</h2>
+        <div class="q-container">
+            <div class="question">Q1. 桜がきれいな（   ）、写真を撮りましょう。</div>
+            <p>（趁著櫻花還很漂亮的時候，來拍照吧。）</p>
+            <div class="options" id="final-q1">
+                <button class="opt-btn" onclick="checkAnswer('final-q1', this, false, 'ans-f1')">A. 間に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q1', this, true, 'ans-f1')">B. うちに</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q1', this, false, 'ans-f1')">C. 最中に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q1', this, false, 'ans-f1')">D. あとに</button>
+            </div>
+            <div id="ans-f1" class="answer-box fade-in">
+                <p><strong>正解：B. うちに</strong></p>
+                <p>解説：趁著「漂亮」這個狀態尚未改變之前趕快做，接續為「な形容詞＋うちに」。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 19: Final 2 -->
+<div class="page p-mint">
+    <div class="card">
+        <h2>【結業小考】Q2</h2>
+        <div class="q-container">
+            <div class="question">Q2. 先生が話している（   ）、学生はメモを取っていました。</div>
+            <p>（老師說話的期間，學生們做著筆記。）</p>
+            <div class="options" id="final-q2">
+                <button class="opt-btn" onclick="checkAnswer('final-q2', this, false, 'ans-f2')">A. うちに</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q2', this, false, 'ans-f2')">B. 最中に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q2', this, true, 'ans-f2')">C. 間に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q2', this, false, 'ans-f2')">D. 前に</button>
+            </div>
+            <div id="ans-f2" class="answer-box fade-in">
+                <p><strong>正解：C. 間に</strong></p>
+                <p>解説：在老師說話的「這一段時間」裡面，學生同步進行著筆記。單純描述時間區間，且未被打斷。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 20: Final 3 -->
+<div class="page p-yellow">
+    <div class="card">
+        <h2>【結業小考】Q3</h2>
+        <div class="q-container">
+            <div class="question">Q3. 会議の（   ）、携帯電話が鳴ってしまいました。</div>
+            <p>（正當開會開到一半時，手機響了起來。）</p>
+            <div class="options" id="final-q3">
+                <button class="opt-btn" onclick="checkAnswer('final-q3', this, false, 'ans-f3')">A. 間に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q3', this, true, 'ans-f3')">B. 最中に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q3', this, false, 'ans-f3')">C. うちに</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q3', this, false, 'ans-f3')">D. ときに</button>
+            </div>
+            <div id="ans-f3" class="answer-box fade-in">
+                <p><strong>正解：B. 最中に</strong></p>
+                <p>解説：會議進行到一半時，被手機鈴聲打斷了。名詞接續為「名詞＋の＋最中に」。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 21: Final 4 -->
+<div class="page p-blue">
+    <div class="card">
+        <h2>【結業小考】Q4</h2>
+        <div class="q-container">
+            <div class="question">Q4. スープが冷めない（   ）、早く飲んでください。</div>
+            <p>（趁湯還沒冷掉，請快點喝。）</p>
+            <div class="options" id="final-q4">
+                <button class="opt-btn" onclick="checkAnswer('final-q4', this, false, 'ans-f4')">A. 間に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q4', this, true, 'ans-f4')">B. うちに</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q4', this, false, 'ans-f4')">C. 最中に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q4', this, false, 'ans-f4')">D. 前に</button>
+            </div>
+            <div id="ans-f4" class="answer-box fade-in">
+                <p><strong>正解：B. うちに</strong></p>
+                <p>解説：趁著「還沒變冷」的狀態結束前趕快行動。動詞ない形接續。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 22: Final 5 -->
+<div class="page p-pink">
+    <div class="card">
+        <h2>【結業小考】Q5</h2>
+        <div class="q-container">
+            <div class="question">Q5. シャワーを浴びている（   ）、電気が消えました。</div>
+            <p>（洗澡洗到一半時，突然停電了。）</p>
+            <div class="options" id="final-q5">
+                <button class="opt-btn" onclick="checkAnswer('final-q5', this, false, 'ans-f5')">A. うちに</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q5', this, false, 'ans-f5')">B. 間に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q5', this, true, 'ans-f5')">C. 最中に</button>
+                <button class="opt-btn" onclick="checkAnswer('final-q5', this, false, 'ans-f5')">D. あとに</button>
+            </div>
+            <div id="ans-f5" class="answer-box fade-in">
+                <p><strong>正解：C. 最中に</strong></p>
+                <p>解説：正在進行洗澡的動作時，遭遇了停電這個妨礙動作繼續進行的突發狀況。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page 23: Culture Note 1 -->
+<div class="page p-purple">
+    <div class="card">
+        <h2>文化補充：日本のコンビニ事情</h2>
+        <div class="q-container">
+            <p><strong>ホットスナック (Hot Snacks)</strong></p>
+            <p>日本のコンビニのレジ横には、フライドチキンやコロッケなどのホットスナックが並んでいます。買った後は必ず「温かいうちに」（趁熱）食べてくださいね。</p>
+        </div>
+        <div class="q-container">
+            <p><strong>セルフレジ (Self-checkout)</strong></p>
+            <p>最近は自分で会計をするセルフレジが増えています。「操作している最中に」(操作到一半時) 分からないことがあれば、店員さんに声をかけましょう。</p>
+        </div>
+    </div>
+</div>
+
+<!-- Page 24: Summary -->
+<div class="page p-mint">
+    <div class="card text-center">
+        <h2>学習の振り返り</h2>
+        <p style="margin-top: 20px;">今日の特訓はいかがでしたか？</p>
+        <div style="text-align: left; background: #fff; padding: 20px; border-radius: 10px; margin-top: 20px; line-height: 1.8;">
+            <p>☑️ 「しか…ない」で不足感を表現</p>
+            <p>☑️ 「〜し、〜し」で理由を並べる</p>
+            <p>☑️ 「〜間に」で期間内の出来事を説明</p>
+            <p>☑️ 「〜うちに」で状態が変わる前に行動</p>
+            <p>☑️ 「〜最中に」で予想外のハプニングを伝える</p>
+        </div>
+    </div>
+</div>
+
+<!-- Page 25: Ending -->
+<div class="page p-yellow">
+    <div class="card text-center">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px;">全問クリア！</h1>
+        <p style="font-size: 1.3rem;">お疲れ様でした。</p>
+        <p style="font-size: 1.2rem;">文法も翻訳も、見事にマスターしましたね。</p>
+        <div style="background: var(--bg-blue); padding: 20px; border-radius: 15px; margin-top: 30px;">
+            <p style="color: var(--accent); font-weight: bold; font-size: 1.4rem;">次のステップへ、<br>引き続き頑張りましょう！</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 選擇題互動邏輯
+    function checkAnswer(groupId, btn, isCorrect, answerBoxId) {
+        // 取得同一題的所有選項
+        const options = document.getElementById(groupId).querySelectorAll('.opt-btn');
+        
+        // 將所有選項反白並取消點擊功能
+        options.forEach(opt => {
+            opt.style.background = '#F5F6FA';
+            opt.style.color = '#ccc';
+            opt.style.pointerEvents = 'none';
+        });
+        
+        // 標示選中的按鈕顏色
+        if (isCorrect) {
+            btn.style.background = 'var(--correct)';
+            btn.style.color = '#333';
+            btn.style.border = '2px solid #88D4B4';
+        } else {
+            btn.style.background = 'var(--wrong)';
+            btn.style.color = '#333';
+            btn.style.border = '2px solid #F4A5B7';
+        }
+        
+        // 顯示對應的解答區塊
+        const answerBox = document.getElementById(answerBoxId);
+        if (answerBox) {
+            answerBox.style.display = 'block';
+        }
+    }
+
+    // 展開解答與提示的共用邏輯
+    function toggleReveal(elementId) {
+        const el = document.getElementById(elementId);
+        if (el.style.display === 'none' || el.style.display === '') {
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
